@@ -24,7 +24,7 @@ x.find('...')
 - 支持的基本查询 `#id div .some [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]`.
 - 支持组合查询 `div.class div[aa..] div.cls[att..]`.
 - 支持子代查询 比如: `div .bar a[title]`.
-- 支持链式查询: x.find('div').find('li') 和 x.find('div li') 等效
+- 支持链式查询: `x.find('div').find('li')` 和 `x.find('div li')` 等效
 - **_不_**支持查询: `div~li div>li`
 - 空格有严格意义, 不要乱加
 
@@ -36,7 +36,7 @@ x.find('...')
 node = { 
   raw: 'div class="cc"',
   data: 'div class="cc"',
- type: 'tag', # maybe eq 'text'
+ type: 'tag', // maybe eq 'text'
  name: 'div',
  attribs: { class: 'cc' },
  children: [] }
@@ -45,9 +45,9 @@ node = {
 ### 快捷方法
 - `elms` 属性: 符合要求的`[node]`
 - `size()` 方法: `elms.length`
-- 'raw()` 方法: '[node.raw]`
+- `raw()` 方法: `[node.raw]`
 - `text()` 方法: 筛选所以文本节点
-- 'attr(name)' 方法: 取得第一个拥有此属性的阶段的属性值
+- `attr(name)` 方法: 取得第一个拥有此属性的阶段的属性值
 
 ### 循环
 
