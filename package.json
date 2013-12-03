@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "coffee-script": "1.6.3"
-  }
+  },
   "licenses": [
     {
       "type": "MIT",
@@ -26,10 +26,10 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "files": {
-    "lib", "test", "changes.md", "readme.md"
-  },
-  "main": "./lib/htmlparser-query.js",
+  "files": [
+    "lib", "test", "Changes.md", "README.md"
+  ],
+  "main": "./lib/htmlparser-query.coffee",
   "repository": {
     "type": "git",
     "url": "git://github.com/lusionx/htmlparser-query.git"
