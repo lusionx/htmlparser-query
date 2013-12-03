@@ -1,6 +1,5 @@
 #bin/coffee
 
-
 util = require 'util'
 
 htmlparser = require 'htmlparser'
@@ -65,6 +64,7 @@ class xQuery
     find: (selector) ->
         # #id div .some [aa=xx] div.class div[aa] div.xxx[n=v]
 
+
         rr = func._reg
 
         qs = []
@@ -75,10 +75,6 @@ class xQuery
             mch = {}
             for k, r of rr
                 mch[k] = r.exec ss
-            console.log ss
-            if ss == 'a[title^=title]'
-                console.log m = mch.attr
-                console.log [m[1], m[2], m[3]].join('@')
 
             switch
                 when m = mch.id then qs.push func.id(m[1])

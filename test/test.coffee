@@ -72,20 +72,17 @@ do ->
     assert(x.size() == 2)
 
 
-
-
     x = gg('a[title^=title]')
-    #console.log x
-    #assert(x.size() == 1)
-    ###
-    x = gg('a[title$=title]')
     #console.log x
     assert(x.size() == 1)
 
+    x = gg('a[title$=title]')
+    #console.log x
+    assert(x.size() == 1)
+    ###
     x = gg('a[title*=title]')
     console.log x
     assert(x.size() == 2)
-
     ###
 
 

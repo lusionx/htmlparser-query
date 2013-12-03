@@ -52,5 +52,6 @@ func.attr = (name, op, val) ->
 
     return ff
 
+# export
 for k, f of func
     exports[k] = f
