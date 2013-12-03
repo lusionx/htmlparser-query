@@ -6,13 +6,13 @@ util = require 'util'
 func = {}
 
 func._reg =
-    id : /^#(\w+)$/
-    class: /^\.(\w+)$/
-    tag: /^(\w+)$/
-    attr: /^\[(\w+)([\^\$\*!]?=?)(\w*)\]$/
-    tag$cls: /^(\w+)\.(\w+)$/
-    tag$attr: /^(\w+)\[(\w+)([\^\$\*!]?=?)(\w*)\]$/
-    tag$cls$attr: /^(\w+)\.(\w+)\[(\w+)([\^\$\*!]?=?)(\w*)\]$/
+    id : /^#(\w+)$/         # #id
+    class: /^\.(\w+)$/      # .cls
+    tag: /^(\w+)$/          # div
+    attr: /^\[(\w+)([\^\$\*!]?=?)(\w*)\]$/          # [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]
+    tag$cls: /^(\w+)\.(\w+)$/   # div.cls
+    tag$attr: /^(\w+)\[(\w+)([\^\$\*!]?=?)(\w*)\]$/     # div[a..]
+    tag$cls$attr: /^(\w+)\.(\w+)\[(\w+)([\^\$\*!]?=?)(\w*)\]$/  # div.cls[a..]
 
 func.id = (name) ->
     return func.attr('id', '=', name)

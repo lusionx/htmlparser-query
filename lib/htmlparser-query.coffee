@@ -64,7 +64,6 @@ class xQuery
     find: (selector) ->
         # #id div .some [aa=xx] div.class div[aa] div.xxx[n=v]
 
-
         rr = func._reg
 
         qs = []
@@ -100,11 +99,12 @@ xQuery::size = () ->
 
 xQuery::text = () ->
     ff = (node) ->
-        return node.type == 'text' and node.data.trim().length
+        #console.log node.data if node.type == 'text'
+        return node.type == 'text' #and node.data.trim().length
 
     result = @findf(ff)
 
-    return (a.data.trim() for a in result)
+    return (a.data.trim() for a in result.elms)
 
 
 
