@@ -1,21 +1,47 @@
 htmlparser-query
 ================
+lang: [english](./README.en.md)
 
-lang: (english)[./README.en.md]
+由于[jquery](https://npmjs.org/package/jquery)在node@windows上无法运行, 编写此工具完成简单查询. 查询方法尽力向jquery靠拢.
 
-## 用法`coffee`
-实例:
-> xQuery = require('htmlparser-query').xQuery
+以下代码使用`coffee`语法
 
-> raw = '通过下载或者文件得到的html字符串'
+## 安装
+> npm -g install coffee-script
 
-> x = xQuery.init(raw)
+下载源码解压, 运行`compile.bat`
 
-> x.qq('#id')
+## 用法
 
-支持 `#id div .some [aa=xx] div.class div[aa] div.xxx[n=v]` 查询
-也支持 子代查询 比如: `div .bar a[title]`
+```coffee-script
+xQuery = require('htmlparser-query')
+raw = '通过下载或者文件得到的html字符串'
+x = xQuery.init(raw)
+x.find('...')```
 
-x.elms is a list of object
-{raw:'', data: '', type:'text|tag|..', name:'div..', attribs:{}, children: []}
+### 查询方法
+- 支持的基本查询 `#id div .some [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]`.
+- 支持组合查询 `div.class div[aa..] div.cls[att..]`.
+- 支持子代查询 比如: `div .bar a[title]`.
+- 支持链式查询: x.find('div').find('li') 和 x.find('div li') 等效
+- **_不_**支持查询: `div~li div>li`
+- 空格有严格意义, 不要乱加
 
+### 自定义查询
+- 调用`findf(filter)`, 传入过滤方法, 查询`node`属性.
+- node结构来自[htmlparser](https://npmjs.org/package/htmlparser)
+```javascript
+node = { 
+  raw: 'div class="cc"',
+  data: 'div class="cc"',
+ type: 'tag', # maybe eq 'text'
+ name: 'div',
+ attribs: { class: 'cc' },
+ children: [object]}
+```
+
+### 快捷方法
+- `elms` 属性: 符合要求的`[node]`
+- `size()` 方法: `elms.length`
+- 'raw()` 方法: '[node.raw]`
+- `text()` 方法: 筛选所以文本节点

@@ -108,7 +108,6 @@ xQuery::text = () ->
 
 
 
-
+exports.load = xQuery.init
 
 exports.xQuery = xQuery
-exports.func = func

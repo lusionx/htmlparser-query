@@ -4,7 +4,7 @@
 util = require 'util'
 fs = require 'fs'
 
-xQuery = require('../lib/htmlparser-query').xQuery
+xQuery = require('../lib/htmlparser-query')
 
 assert = require('assert')
 
@@ -39,7 +39,7 @@ data = """
 
 do ->
 
-    dd = xQuery.init(data)
+    dd = xQuery.load(data)
     writejson './d1.json', dd.elms
 
     gg = (slt) -> dd.find(slt)
@@ -91,7 +91,7 @@ do ->
 
 fs.readFile './index.html', {encoding: 'utf-8'}, (err, data) ->
     # #id div .some [aa=xx] div.class div[aa] div.xxx[n=v]
-    dd = xQuery.init(data)
+    dd = xQuery.load(data)
 
     gg = (slt) -> dd.find(slt)
 
