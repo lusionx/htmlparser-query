@@ -1,0 +1,37 @@
+{
+  "name": "htmlparser-query",
+  "description": "a query tool used like jquery, based htmlparser",
+  "version": "0.0.1",
+  "keywords": [
+    "html",
+    "parser",
+    "query"
+  ],
+  "author": {
+    "name": "liu xing",
+    "email": "lusionx@gmail.com"
+  },
+  "dependencies": {
+    "htmlparser": "1.7.6"
+  },
+  "devDependencies": {
+    "coffee-script": "1.6.3"
+  }
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": {
+    "lib", "test", "changes.md", "readme.md"
+  },
+  "main": "./lib/htmlparser-query.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lusionx/htmlparser-query.git"
+  }
+}
