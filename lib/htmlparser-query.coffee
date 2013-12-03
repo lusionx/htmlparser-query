@@ -1,7 +1,11 @@
+#bin/coffee
+
 
 util = require 'util'
 
 htmlparser = require 'htmlparser'
+
+func = require('./builtin-func')
 
 #log = console.log
 
@@ -61,14 +65,7 @@ class xQuery
     find: (selector) ->
         # #id div .some [aa=xx] div.class div[aa] div.xxx[n=v]
 
-        rr =
-            id : /^#(\w+)$/
-            class: /^\.(\w+)$/
-            tag: /^(\w+)$/
-            attr: /^\[(\w+)=?(\w*)\]$/
-            tag$cls: /^(\w+)\.(\w+)$/
-            tag$attr: /^(\w+)\[(\w+)=?(\w*)\]$/
-            tag$cls$attr: /^(\w+)\.(\w+)\[(\w+)=?(\w*)\]$/
+        rr = func._reg
 
         qs = []
 
@@ -76,20 +73,23 @@ class xQuery
 
         for ss in selector.split(' ')
             mch = {}
-            for k of rr
-                mch[k] = rr[k].exec ss
-            #log mch
+            for k, r of rr
+                mch[k] = r.exec ss
+            console.log ss
+            if ss == 'a[title^=title]'
+                console.log m = mch.attr
+                console.log [m[1], m[2], m[3]].join('@')
 
             switch
                 when m = mch.id then qs.push func.id(m[1])
                 when m = mch.class then qs.push func.class(m[1])
                 when m = mch.tag then qs.push func.tag(m[1])
-                when m = mch.attr then qs.push func.attr(m[1], m[2])
+                when m = mch.attr then qs.push func.attr(m[1], m[2], m[3])
 
                 when m = mch.tag$cls then qs.push [func.tag(m[1]), func.class(m[2])]
-                when m = mch.tag$attr then qs.push [func.tag(m[1]), func.attr(m[2], m[3])]
+                when m = mch.tag$attr then qs.push [func.tag(m[1]), func.attr(m[2], m[3], m[4])]
 
-                when m = mch.tag$cls$attr then qs.push [func.tag(m[1]), func.class(m[2]), func.attr(m[3], mch[4])]
+                when m = mch.tag$cls$attr then qs.push [func.tag(m[1]), func.class(m[2]), func.attr(m[3], m[4], m[5])]
 
         return if qs.length == 1 then @findf qs[0] else @findfs qs
 
@@ -102,33 +102,18 @@ xQuery::raw = () ->
 xQuery::size = () ->
     return @elms.length
 
-
-func = {}
-
-func.id = (name) ->
-    return func.attr('id', name)
-
-func.tag = (name) ->
+xQuery::text = () ->
     ff = (node) ->
-        return node.type is 'tag' and node.name == name
-    return ff
+        return node.type == 'text' and node.data.trim().length
 
-func.class = (name) ->
-    ff = (node) ->
-        has = node.type is 'tag' and node.attribs and node.attribs.class
+    result = @findf(ff)
 
-        if has
-            return node.attribs.class.split(' ').some (e) -> e == name
-    return ff
+    return (a.data.trim() for a in result)
 
-func.attr = (name, val) ->
-    ff = (node)->
-        has = node.type is 'tag' and node.attribs and node.attribs[name]
-        if has and val
-            return node.attribs[name] == val
-        return Boolean(has)
 
-    return ff
+
+
+
 
 
 exports.xQuery = xQuery

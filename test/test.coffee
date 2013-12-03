@@ -1,26 +1,92 @@
-﻿util = require 'util'
+﻿#bin/coffee
+
+
+util = require 'util'
 fs = require 'fs'
 
 xQuery = require('../lib/htmlparser-query').xQuery
 
 assert = require('assert')
 
-console.log
-
 writejson = (path, obj) ->
-    ws = fs.createWriteStream(path)
-    ws.write(util.inspect(obj, {showHidden: true, depth: null}))
-    ws.end()
+    ss = util.inspect obj, {showHidden: true, depth: null}
+    fs.writeFile path, ss, (err) ->
+        throw err if err
+        console.log 'write fin!'
 
-fs.readFile './d1.html', {encoding: 'utf-8'}, (err, data) ->
+data = """
+<div>
+<div class="cc">
+    <ul>
+        <li><a href="xxxx" title="title">title</a></li>
+        <li><a href="xxxx" title="title_x">title_x</a></li>
+        <li><a href="xxxx" title="x_title">x_title</a></li>
+        <li><a href="xxxx" title="x_ss_x">x_ss_x</a></li>
+    </ul>
+</div>
+<div class="clear">  </div>
+<div class="cc">
+    <ul>
+        <li><a href="xxxx">asdsadsa</a></li>
+        <li><a href="xxxx">asdsadsa</a></li>
+        <li><a href="xxxx">asdsadsa</a></li>
+    </ul>
+</div>
+</div>
+"""
+
+do ->
+
     dd = xQuery.init(data)
     writejson './d1.json', dd.elms
 
-    x = dd.qq('.cc')
+    gg = (slt) -> dd.qq(slt)
+
+
+    x = gg('.cc')
     assert(x.size() == 2)
 
-    x = dd.qq('div li')
-    assert(x.size() == 6)
+    x = gg('div li')
+    #console.log x.size()
+    assert(x.size() == 7)
+
+    x = gg('a[title=title]')
+    assert(x.size() == 1)
+    #console.log x
+
+    x = gg('a[title!=title]')
+    assert(x.size() == 3)
+    #console.log x
+
+
+    x = gg('[title^=title]')
+    #console.log x
+    assert(x.size() == 1)
+
+    x = gg('[title$=title]')
+    #console.log x
+    assert(x.size() == 1)
+
+    x = gg('[title*=title]')
+    #console.log x
+    assert(x.size() == 2)
+
+
+
+
+    x = gg('a[title^=title]')
+    #console.log x
+    #assert(x.size() == 1)
+    ###
+    x = gg('a[title$=title]')
+    #console.log x
+    assert(x.size() == 1)
+
+    x = gg('a[title*=title]')
+    console.log x
+    assert(x.size() == 2)
+
+    ###
 
 
 fs.readFile './index.html', {encoding: 'utf-8'}, (err, data) ->
