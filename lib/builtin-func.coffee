@@ -48,7 +48,7 @@ func.attr = (name, op, val) ->
                 return v != val and v[0-val.length..] == val
             if op == '*='
                 return v != val and v.indexOf(val) > -1
-        return has
+        return Boolean has
 
     return ff
 

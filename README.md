@@ -30,15 +30,16 @@ x.find('...')
 
 ### 自定义查询
 - 调用`findf(filter)`, 传入过滤方法, 查询`node`属性.
-- node结构来自[htmlparser](https://npmjs.org/package/htmlparser)
-```javascript
+- node结构来自[htmlparser](https://npmjs.org/package/htmlparser).
+
+```js
 node = { 
   raw: 'div class="cc"',
   data: 'div class="cc"',
  type: 'tag', # maybe eq 'text'
  name: 'div',
  attribs: { class: 'cc' },
- children: [object]}
+ children: [] }
 ```
 
 ### 快捷方法
@@ -46,3 +47,12 @@ node = {
 - `size()` 方法: `elms.length`
 - 'raw()` 方法: '[node.raw]`
 - `text()` 方法: 筛选所以文本节点
+- 'attr(name)' 方法: 取得第一个拥有此属性的阶段的属性值
+
+### 循环
+
+```coffee
+lks = x.find('div.online_border li a[title]')
+for e in lks.elms
+    console.log xQuery.$(e).attr('title')
+```

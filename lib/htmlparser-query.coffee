@@ -45,6 +45,7 @@ class xQuery
     constructor: (elms) ->
         #log 'new'
         @elms = if util.isArray elms then elms else [elms]
+        @length = @elms.length
 
     findf: (q) -> # find by a func
         result = []
@@ -93,7 +94,7 @@ xQuery::raw = () ->
     return (a.raw for a in @elms)
 
 xQuery::size = () ->
-    return @elms.length
+    return @length
 
 xQuery::text = () ->
     ff = (node) ->
@@ -104,10 +105,16 @@ xQuery::text = () ->
 
     return (a.data.trim() for a in result.elms)
 
-
-
+xQuery::attr = (name) ->
+    ff = func.attr(name, '', '')
+    for node in @elms
+        if ff(node) is true
+            return node.attribs[name]
+    return null
 
 
 exports.load = xQuery.init
+
+exports.$ = (node) -> new xQuery(node)
 
 exports.xQuery = xQuery

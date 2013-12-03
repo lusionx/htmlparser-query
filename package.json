@@ -1,7 +1,7 @@
 {
   "name": "htmlparser-query",
   "description": "a query tool used like jquery, based htmlparser",
-  "version": "0.0.3",
+  "version": "0.2.4",
   "keywords": [
     "html",
     "parser",
