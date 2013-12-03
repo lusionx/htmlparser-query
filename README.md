@@ -13,11 +13,12 @@ lang: [english](./README.en.md)
 
 ## 用法
 
-```coffee-script
+```coffee
 xQuery = require('htmlparser-query')
 raw = '通过下载或者文件得到的html字符串'
 x = xQuery.init(raw)
-x.find('...')```
+x.find('...')
+```
 
 ### 查询方法
 - 支持的基本查询 `#id div .some [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]`.
