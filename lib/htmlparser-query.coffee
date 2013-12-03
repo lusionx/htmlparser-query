@@ -89,8 +89,6 @@ class xQuery
         return if qs.length == 1 then @findf qs[0] else @findfs qs
 
 
-xQuery::qq = xQuery::find
-
 xQuery::raw = () ->
     return (a.raw for a in @elms)
 

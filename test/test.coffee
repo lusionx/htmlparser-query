@@ -42,7 +42,7 @@ do ->
     dd = xQuery.init(data)
     writejson './d1.json', dd.elms
 
-    gg = (slt) -> dd.qq(slt)
+    gg = (slt) -> dd.find(slt)
 
 
     x = gg('.cc')
@@ -55,8 +55,8 @@ do ->
     x = gg('a[title=title]')
     assert(x.size() == 1)
     #console.log x
-    console.log x.text()
-    #assert(x.text().length == 3)
+    #console.log x.text()
+    assert(x.text().length == 3)
 
     x = gg('a[title!=title]')
     assert(x.size() == 3)
@@ -93,24 +93,26 @@ fs.readFile './index.html', {encoding: 'utf-8'}, (err, data) ->
     # #id div .some [aa=xx] div.class div[aa] div.xxx[n=v]
     dd = xQuery.init(data)
 
+    gg = (slt) -> dd.find(slt)
+
     writejson './index.json', dd.elms
 
-    x = dd.qq('#navbg1btn_ont')
+    x = gg('#navbg1btn_ont')
     assert(x.size() == 1)
 
-    x = dd.qq('h2')
+    x = gg('h2')
     assert(x.size() == 3)
 
-    x = dd.qq('.cartoon_online_border')
+    x = gg('.cartoon_online_border')
     assert(x.size() == 2)
 
 
-    x = dd.qq('div.cartoon_online_border')
+    x = gg('div.cartoon_online_border')
     assert(x.size() == 2)
 
-    x = dd.qq('div.cartoon_online_border li')
+    x = gg('div.cartoon_online_border li')
     assert(x.size() == 203)
 
-    x = dd.qq('div.cartoon_online_border a[title]')
+    x = gg('div.cartoon_online_border a[title]')
     assert(x.size() == 203)
 
