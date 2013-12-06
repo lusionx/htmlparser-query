@@ -1,1 +1,0 @@
-coffee --compile lib test

@@ -7,6 +7,8 @@ lib-cov
 *.pid
 *.gz
 
+htmlparser-query-*.tgz
+
 test/*.json
 *.js
 

@@ -4,7 +4,7 @@ util = require 'util'
 
 htmlparser = require 'htmlparser'
 
-func = require('./builtin-func')
+func = require './builtin-func'
 
 #log = console.log
 

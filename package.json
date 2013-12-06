@@ -1,15 +1,23 @@
 {
   "name": "htmlparser-query",
   "description": "a query tool used like jquery, based htmlparser",
-  "version": "0.2.4",
+  "version": "0.2.5",
+  "author": {
+    "name": "liu xing",
+    "email": "lusionx@gmail.com"
+  },
   "keywords": [
     "html",
     "parser",
     "query"
   ],
-  "author": {
-    "name": "liu xing",
-    "email": "lusionx@gmail.com"
+  "homepage": "http://www.xhsh.info",
+  "scripts": {
+
+  },
+  "bugs": {
+    "url" : "http://github.com/owner/project/issues",
+    "email" : "project@hostname.com"
   },
   "dependencies": {
     "htmlparser": "1.7.6"
@@ -24,14 +32,19 @@
     }
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": "*"
   },
   "files": [
-    "lib", "test", "Changes.md", "README.md"
+    "*.md", "index.js", "index.coffee", "LICENSE",
+    "lib/*.js", "lib/*.coffee",
+    "test/*.js", "test/*.coffee", "test/index.html"
   ],
-  "main": "./lib/htmlparser-query.coffee",
+  "main": "index",
   "repository": {
     "type": "git",
     "url": "git://github.com/lusionx/htmlparser-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lusionx/htmlparser-query/issues"
   }
 }

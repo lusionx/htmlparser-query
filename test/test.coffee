@@ -4,7 +4,7 @@
 util = require 'util'
 fs = require 'fs'
 
-xQuery = require('../lib/htmlparser-query')
+xQuery = require '../lib/htmlparser-query'
 
 assert = require('assert')
 
