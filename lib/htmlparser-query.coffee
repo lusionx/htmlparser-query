@@ -33,7 +33,7 @@ _ref = (nodes, filter, result) -> # node query
 
 class xQuery
 
-    @init: (raw) ->
+    @load: (raw) ->
         handler = new htmlparser.DefaultHandler (error, dom) ->
             return if error
         parser = new htmlparser.Parser handler
@@ -46,6 +46,8 @@ class xQuery
         #log 'new'
         @elms = if util.isArray elms then elms else [elms]
         @length = @elms.length
+        for e, i in @elms
+            @[i] = e
 
     findf: (q) -> # find by a func
         result = []
@@ -103,7 +105,7 @@ xQuery::text = () ->
 
     result = @findf(ff)
 
-    return (a.data.trim() for a in result.elms)
+    return (a.data.trim() for a in result.elms).join('')
 
 xQuery::attr = (name) ->
     ff = func.attr(name, '', '')
@@ -112,8 +114,12 @@ xQuery::attr = (name) ->
             return node.attribs[name]
     return null
 
+xQuery::attrs = (name) ->
+    ff = func.attr(name, '', '')
 
-exports.load = xQuery.init
+    return node.attribs[name] for node in @elms when ff(node) is true
+
+exports.load = xQuery.load
 
 exports.$ = (node) -> new xQuery(node)
 

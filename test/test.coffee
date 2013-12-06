@@ -5,6 +5,7 @@ util = require 'util'
 fs = require 'fs'
 
 xQuery = require '../lib/htmlparser-query'
+$ = xQuery.$
 
 assert = require('assert')
 
@@ -15,12 +16,9 @@ writejson = (path, obj) ->
         console.log 'write fin!'
 
 data = """
-<div>
 <div class="cc">
     <ul>
-        <li><a href="xxxx" title="title">title
-            <span> sp--an </span> span-end
-        </a></li>
+        <li><a href="xxxx" title="title">title end</a></li>
         <li><a href="xxxx" title="title_x">title_x</a></li>
         <li><a href="xxxx" title="x_title">x_title</a></li>
         <li><a href="xxxx" title="x_ss_x">x_ss_x</a></li>
@@ -34,6 +32,10 @@ data = """
         <li><a href="xxxx">asdsadsa</a></li>
     </ul>
 </div>
+<div class="iter">
+    <p>p1</p>
+    <p>p1</p>
+    <p>p1</p>
 </div>
 """
 
@@ -56,7 +58,7 @@ do ->
     assert(x.size() == 1)
     #console.log x
     #console.log x.text()
-    assert(x.text().length == 3)
+    assert(x.text() == 'title end')
 
     x = gg('a[title!=title]')
     assert(x.size() == 3)
@@ -82,11 +84,13 @@ do ->
     x = gg('a[title$=title]')
     #console.log x
     assert(x.size() == 1)
-    ###
+
     x = gg('a[title*=title]')
-    console.log x
+    #console.log x
     assert(x.size() == 2)
-    ###
+
+    for e in x.gg('p')
+        assert($(e).text() == "p1")
 
 
 fs.readFile './index.html', {encoding: 'utf-8'}, (err, data) ->

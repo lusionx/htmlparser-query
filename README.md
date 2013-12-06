@@ -15,8 +15,7 @@ lang: [us-en](https://github.com/lusionx/htmlparser-query/blob/master/README.en.
 
 ```coffee
 xQuery = require('htmlparser-query')
-raw = '通过下载或者文件得到的html字符串'
-x = xQuery.init(raw)
+x = xQuery.init('string or Buffer')
 x.find('...')
 ```
 
@@ -43,16 +42,18 @@ node = {
 ```
 
 ### 快捷方法
-- `elms` 属性: 符合要求的`[node]`
-- `size()` 方法: `elms.length`
-- `raw()` 方法: `[node.raw]`
-- `text()` 方法: 筛选所以文本节点
-- `attr(name)` 方法: 取得第一个拥有此属性的阶段的属性值
+- `elms -> []` 属性: 符合要求的`[node]`
+- `size() -> int` 方法: `elms.length`
+- `raw() -> []` 方法: `[node.raw]`
+- `text() -> string` 方法: 筛选所以文本节点
+- `attr(name) -> string` 方法: 取得第一个拥有此属性的节点的属性值
+- `attrs(name) -> [string]` 方法: 取得所有拥有此属性的节点的属性值
 
 ### 循环
 
 ```coffee
-lks = x.find('div.online_border li a[title]')
-for e in lks.elms
-    console.log xQuery.$(e).attr('title')
+xq = require 'htmlparser-query'
+$ = xq.$
+for e in xq.load('string or Buffer').find('ul.border li a[title]')
+    console.log $(e).attr('title')
 ```
