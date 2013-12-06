@@ -10,5 +10,5 @@ download package, unzip it, run `compile.bat`
 
 ## use
 
-test 
+test 2 3
 
