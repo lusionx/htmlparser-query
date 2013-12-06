@@ -7,9 +7,7 @@ lang: [us-en](https://github.com/lusionx/htmlparser-query/blob/master/README.en.
 以下代码使用`coffee`语法
 
 ## 安装
-> npm -g install coffee-script
-
-下载源码解压, 运行`compile.bat`
+> npm install htmlparser-query
 
 ## 用法
 
