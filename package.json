@@ -35,7 +35,7 @@
     "node": "*"
   },
   "files": [
-    "*.md", "index.js", "index.coffee", "LICENSE",
+    "README.md", "index.js", "index.coffee", "LICENSE",
     "lib/*.js", "lib/*.coffee",
     "test/*.js", "test/*.coffee", "test/index.html"
   ],

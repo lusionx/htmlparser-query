@@ -1,6 +1,6 @@
 htmlparser-query
 ================
-lang: [english](./README.en.md)
+lang: [us-en](https://github.com/lusionx/htmlparser-query/blob/master/README.en.md)
 
 由于[jquery](https://npmjs.org/package/jquery)在node@windows上无法运行, 编写此工具完成简单查询. 查询方法尽力向jquery靠拢.
 
