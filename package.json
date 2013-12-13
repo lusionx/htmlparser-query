@@ -1,7 +1,7 @@
 {
   "name": "htmlparser-query",
   "description": "a query tool used like jquery, based htmlparser",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "author": {
     "name": "liu xing",
     "email": "lusionx@gmail.com"
@@ -25,19 +25,14 @@
   "devDependencies": {
     "coffee-script": "1.6.3"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "licenses": "MIT",
   "engines": {
-    "node": "*"
+    "node": ">=0.8.0"
   },
   "files": [
     "README.md", "index.js", "index.coffee", "LICENSE",
     "lib/*.js", "lib/*.coffee",
-    "test/*.js", "test/*.coffee", "test/index.html"
+    "test/*.js", "test/*.coffee", "test/*.html"
   ],
   "main": "index",
   "repository": {

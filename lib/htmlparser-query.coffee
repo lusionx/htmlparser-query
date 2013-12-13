@@ -88,6 +88,7 @@ class xQuery
                 when m = mch.tag$attr then qs.push [func.tag(m[1]), func.attr(m[2], m[3], m[4])]
 
                 when m = mch.tag$cls$attr then qs.push [func.tag(m[1]), func.class(m[2]), func.attr(m[3], m[4], m[5])]
+                else throw new Error('not support selector ' + ss)
 
         return if qs.length == 1 then @findf qs[0] else @findfs qs
 
