@@ -10,7 +10,6 @@ lib-cov
 htmlparser-query-*.tgz
 
 test/*.json
-*.js
 
 pids
 logs
