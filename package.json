@@ -1,7 +1,7 @@
 {
   "name": "htmlparser-query",
   "description": "a query tool used like jquery, based htmlparser",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "author": {
     "name": "liu xing",
     "email": "lusionx@gmail.com"
@@ -15,24 +15,22 @@
   "scripts": {
 
   },
-  "bugs": {
-    "url" : "http://github.com/owner/project/issues",
-    "email" : "project@hostname.com"
-  },
   "dependencies": {
-    "htmlparser": "1.7.6"
+    "async": "~0.2.10",
+    "htmlparser": "~1.7.6",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "coffee-script": "1.6.3"
   },
   "licenses": "MIT",
   "engines": {
-    "node": ">=0.8.0"
+    "node": "~0.10.10"
   },
   "files": [
-    "README.md", "index.js", "index.coffee", "LICENSE",
-    "lib/*.js", "lib/*.coffee",
-    "test/*.js", "test/*.coffee", "test/*.html"
+    "README.md", "index.js", "LICENSE",
+    "lib/*.js",
+    "test/*.js", "test/*.html"
   ],
   "main": "index",
   "repository": {

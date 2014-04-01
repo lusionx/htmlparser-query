@@ -4,21 +4,18 @@ lang: [us-en](https://github.com/lusionx/htmlparser-query/blob/master/README.en.
 
 由于[jquery](https://npmjs.org/package/jquery)在node@windows上无法运行, 编写此工具完成简单查询. 查询方法尽力向jquery靠拢.
 
-以下代码使用`coffee`语法
-
 ## 安装
 > npm install htmlparser-query
 
 ## 用法
 
-```coffee
-xQuery = require('htmlparser-query')
-x = xQuery.init('string or Buffer')
-x.find('...')
+```js
+var x = require('htmlparser-query').init('string or Buffer');
+x.find('...');
 ```
 
 ### 查询方法
-- 支持的基本查询 `#id div .some [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]`.
+- 支持的基本查询 `#id div .class [a] [a=b] [a!=b] [a^=b] [a$=b] [a*=b]`.
 - 支持组合查询 `div.class div[aa..] div.cls[att..]`.
 - 支持子代查询 比如: `div .bar a[title]`.
 - 支持链式查询: `x.find('div').find('li')` 和 `x.find('div li')` 等效
@@ -30,13 +27,14 @@ x.find('...')
 - node结构来自[htmlparser](https://npmjs.org/package/htmlparser).
 
 ```js
-node = { 
-  raw: 'div class="cc"',
-  data: 'div class="cc"',
- type: 'tag', // maybe eq 'text'
- name: 'div',
- attribs: { class: 'cc' },
- children: [] }
+node = {
+    raw: 'div class="cc"',
+    data: 'div class="cc"',
+    type: 'tag', // maybe 'text'
+    name: 'div',
+    attribs: { class: 'cc', href:'' },
+    children: []
+};
 ```
 
 ### 快捷方法
@@ -49,9 +47,10 @@ node = {
 
 ### 循环
 
-```coffee
-xq = require 'htmlparser-query'
-$ = xq.$
-for e in xq.load('string or Buffer').find('ul.border li a[title]')
-    console.log $(e).attr('title')
+```js
+var a = require('htmlparser-query').load('string or Buffer')
+var xq = a.find('ul.border li a[title]')
+_.each(xq.elms, function(e){
+    console.log($(e).attr('title'));
+});
 ```
